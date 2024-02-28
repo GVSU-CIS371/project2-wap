@@ -10,15 +10,25 @@ function generateProductHTML(product: Product): string {
 }
 
 function renderProducts(prods: Product[]): void {
-    // your code
+    const mainContainer = document.getElementById('main-container');
+    if (!mainContainer) return;
+
+    mainContainer.innerHTML = '';
+
+    prods.forEach(product => {
+        const pHTML = generateProductHTML(product);
+        mainContainer.innerHTML += pHTML;
+    });
 }
 
 function getByCategory(category: string): void {
-    // your code
+    const pFiletered = products.filter(product => product.category === category);
+    renderProducts(pFiletered);
 }
 
 function getByRating(minRating: number): void {
-    // your code
+    const pFiletered = products.filter(product => product.rating > minRating);
+    renderProducts(pFiletered);
 }
 
 export { renderProducts, getByCategory, getByRating };
